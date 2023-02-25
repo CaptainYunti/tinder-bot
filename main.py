@@ -23,7 +23,7 @@ options.add_argument(f"--user-data-dir=C:/Users/{WINDOWS_USER}/AppData/Local/Goo
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 wait = WebDriverWait(driver, 10)
-short_wait = WebDriverWait(driver, 2)
+short_wait = WebDriverWait(driver, 4)
 
 driver.maximize_window()
 
@@ -100,7 +100,7 @@ while want_more:
 driver.implicitly_wait(10)
 driver.find_element(By.CSS_SELECTOR, 'a[href="/app/profile"]').click()
 driver.implicitly_wait(10)
-driver.find_element(By.XPATH, '//*[@id="settings"]/div/div/div/div[22]/div/div/div').click()
+driver.find_elements(By.CSS_SELECTOR, 'aside div[role="button"]')[-2].click()
 driver.implicitly_wait(10)
 driver.find_element(By.CSS_SELECTOR, "button.c1p6lbu0").click()
 
