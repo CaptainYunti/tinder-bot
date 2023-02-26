@@ -90,7 +90,10 @@ while want_more:
             driver.find_element(By.XPATH, '//*[@id="c160459658"]/main/div/div[3]/button[2]').click()
             want_more = False
         except selenium.common.exceptions.NoSuchElementException:
-            driver.refresh()
+            try:
+                driver.find_element(By.XPATH, '//*[@id="c160459658"]/main/div/div/div[3]/button[2]').click()
+            except selenium.common.exceptions.NoSuchElementException:
+                driver.refresh()
 
     if error_number >= max_error_number:
         want_more = False
