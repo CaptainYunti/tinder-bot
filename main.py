@@ -46,7 +46,7 @@ except selenium.common.exceptions.TimeoutException:
     original_window = driver.current_window_handle
 
     # wait.until_not(EC.NoSuchElementException)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(4)
     driver.find_element(By.CSS_SELECTOR, " a.c1p6lbu0").click()
 
     try:
@@ -56,7 +56,7 @@ except selenium.common.exceptions.TimeoutException:
         driver.switch_to.frame(iframe)
         driver.find_element(By.ID, "close").click()
         driver.switch_to.parent_frame()
-        driver.implicitly_wait(10)
+        driver.implicitly_wait(4)
         driver.find_element(By.CSS_SELECTOR, "iframe").click()
 
     change_window()
@@ -72,14 +72,16 @@ strange_number = 3
 error_number = 0
 max_error_number = 10
 
+time.sleep(3)
+
 while want_more:
-    time.sleep(2)
     try:
         driver.find_element(
             By.XPATH,
             f'//*[@id="c-60880778"]/div/div[1]/div/main/div[1]/div/div/div[1]/div[1]/div/div[{strange_number}]/div/div[4]/button'
         ).click()
         error_number = 0
+        time.sleep(3)
     except selenium.common.exceptions.NoSuchElementException:
         error_number += 1
         print(error_number)
