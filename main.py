@@ -72,28 +72,29 @@ strange_number = 3
 error_number = 0
 max_error_number = 10
 
-time.sleep(3)
+time.sleep(6)
 
 while want_more:
     try:
         driver.find_element(
             By.XPATH,
-            f'//*[@id="c-60880778"]/div/div[1]/div/main/div[1]/div/div/div[1]/div[1]/div/div[{strange_number}]/div/div[4]/button'
+            f'//div/div[1]/div/main/div[1]/div/div/div[1]/div[1]/div/div[{strange_number}]/div/div[4]/button'
+
         ).click()
         error_number = 0
-        time.sleep(3)
+        time.sleep(1)
     except selenium.common.exceptions.NoSuchElementException:
         error_number += 1
         print(error_number)
         strange_number = 4 if strange_number == 3 else 3
     except selenium.common.exceptions.ElementClickInterceptedException:
-        time.sleep(2)
+        driver.implicitly_wait(2)
         try:
-            driver.find_element(By.XPATH, '//*[@id="c160459658"]/main/div/div[3]/button[2]').click()
+            driver.find_element(By.XPATH, '//main/div/div[3]/button[2]').click()
             want_more = False
         except selenium.common.exceptions.NoSuchElementException:
             try:
-                driver.find_element(By.XPATH, '//*[@id="c160459658"]/main/div/div/div[3]/button[2]').click()
+                driver.find_element(By.XPATH, '//main/div/div/div[3]/button[2]').click()
             except selenium.common.exceptions.NoSuchElementException:
                 driver.refresh()
 
