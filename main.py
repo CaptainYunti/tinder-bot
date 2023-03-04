@@ -40,7 +40,7 @@ def change_window():
 
 
 try:
-    short_wait.until(EC.url_contains("app"))
+    wait.until(EC.url_contains("app"))
 except selenium.common.exceptions.TimeoutException:
 
     original_window = driver.current_window_handle
@@ -72,9 +72,10 @@ strange_number = 3
 error_number = 0
 max_error_number = 10
 
-time.sleep(6)
+time.sleep(10)
 
 while want_more:
+    time.sleep(1)
     try:
         driver.find_element(
             By.XPATH,
@@ -82,8 +83,9 @@ while want_more:
 
         ).click()
         error_number = 0
-        time.sleep(1)
+        # time.sleep(1)
     except selenium.common.exceptions.NoSuchElementException:
+
         error_number += 1
         print(error_number)
         strange_number = 4 if strange_number == 3 else 3
